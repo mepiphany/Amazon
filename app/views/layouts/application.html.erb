@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Amazon</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%# <%= flash[:notice] || flash[:alert]  %>
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+  <a class="navbar-left" href="#"><%= image_tag("amazon.png") %></a>
+  <a class="navbar-brand navbar-left" href="#">Amazon</a>
+  <ul class="nav navbar-nav navbar-right">
+     <li><%= link_to "home", root_path %></li>
+     <li><%= link_to "Create User", new_user_path %></li>
+     <li><%= link_to "Add New Product", new_product_path %></li>
+
+    <% if session[:user_id] %>
+      <p>Hello <%= User.find(session[:user_id]).email %> </p>
+      <li><%= link_to "Sign-out", sessions_path, method: :delete %></li>
+    <% else %>
+      <li><%= link_to "Sign-in", new_session_path %></li>
+    <% end %>
+  </ul>
+</nav>
+
+<%= notice || alert  %>
+<%= yield %>
+
+</body>
+</html>

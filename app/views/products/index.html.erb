@@ -1,0 +1,12 @@
+<div class="jumbotron">
+  <h1 class="text-center">products: (<%= @products.length %>)</h1>
+</div>
+
+<div class="row">
+  <% @products.each do |product| %>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 text-center">
+      <span class="glyphicon glyphicon-home"></span>
+      <p><%=link_to "#{product.name} - #{number_to_currency product.price}", product_path({id: product.id})  %></p>
+    </div>
+  <% end %>
+</div>
