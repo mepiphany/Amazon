@@ -13,22 +13,14 @@
             method: :delete,
             data: {confirm: "Are you sure?"}%>
 <%# end %>
+<h3>Create Reviews</h3>
+<div id="review-form">
+  <%= render "/reviews/form" %>
+</div>
 
 
-<%= form_for [@product, @review] do |f| %>
-  <div>
-    <%= f.label :body  %>
-    <%= f.text_area :body %>
-  </div>
-<%= f.submit %>
-<% end %>
-<% @review.errors.full_messages.join(", ") %>
-<% @product.reviews.each do |review| %>
-<%= review.body %>
-<%# This is a shortcut [@prodct, rev] %>
-<%= link_to "Delete", product_review_path(@product, review),
-                      method: :delete,
-                      data: {confirm: "Are you Sure?"} %>
-
-<hr>
-<% end %>
+<div class="reviews">
+  <% @product.reviews.each do |review| %>
+    <%= render "/reviews/review", r: review %>
+  <% end %>
+</div>

@@ -1,0 +1,5 @@
+$('.reviews').prepend('<%= j render "review", r: @review  %>');
+
+<% @review = Review.new %>
+
+$('#review-form').html('<%= j render "form" %>')
